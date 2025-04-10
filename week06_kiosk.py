@@ -10,12 +10,13 @@ def order_process(idx):
     total_price += prices[idx]
     amounts[idx] += 1
 
+drinks = ["아이스 아메리카노", "카페 라떼", "수박 주스", "딸기 주스"]
+prices = [2000, 2500, 3000, 3200]
+amounts = list()
+for k in range(len(drinks)):
+    amounts.append(0)
 
 total_price = 0
-
-drinks = ["아이스 아메리카노", "카페 라떼", "수박 주스"]
-prices = [2000, 2500, 3000]
-amounts = [0,0,0]
 
 menu_texts = ""
 
