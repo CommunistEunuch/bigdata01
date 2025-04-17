@@ -1,7 +1,6 @@
 # 아아 : 2000 # 라떼 2500
 drinks = ["아이스 아메리카노", "카페 라떼", "수박 주스", "딸기 주스"]
 prices = [2000, 2500, 3000, 3200]
-#amounts = [0 for _ in range(len(drinks))] # 리스트 컴프리헨션 (리스트 축약) 가독성을 위해 _ 사용
 amounts = [0] * len(drinks) #오히려 현재 코드에서는 이쪽이 더 빠를 수 있음.
 
 
@@ -44,20 +43,18 @@ def print_receipt() -> None:
     print("-------------------------------")
     print(f"{total_price}원 입니다")
 
-#for j in range(len(drinks)):
-#    menu_texts = menu_texts + f"{j+1}) {drinks[j]} {prices[j]}원 "
-#menu_texts = menu_texts + f"{len(drinks)+1})주문 종료 :"
-
-
 
 while(True):
-    menu = int(input(display_menu()))
-    if len(drinks) >= menu >= 1:
-        order_process(menu-1)
-    elif menu == len(drinks)+1:
-        print("주문을 종료합니다.")
-        break
-    else:
-        print(f"{menu}메뉴는 존재하지 않습니다. 다시 시도해주세요.")
+    try:
+        menu = int(input(display_menu()))
+        if len(drinks) >= menu >= 1:
+            order_process(menu-1)
+        elif menu == len(drinks)+1:
+            print("주문을 종료합니다.")
+            break
+        else:
+            print(f"{menu}메뉴는 존재하지 않습니다. 다시 시도해주세요.")
+    except ValueError:
+        print("문자를 입력할 수 없습니다. 다시 시도해주세요")
 
 print_receipt()
