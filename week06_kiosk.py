@@ -1,7 +1,7 @@
 # 아아 : 2000 # 라떼 2500
 drinks = ["아이스 아메리카노", "카페 라떼", "수박 주스", "딸기 주스"]
 prices = [2000, 2500, 3000, 3200]
-#amounts = [0 for _ in range(len(drinks))] # 리스트 컴프리헨션 (리스트 축약)
+#amounts = [0 for _ in range(len(drinks))] # 리스트 컴프리헨션 (리스트 축약) 가독성을 위해 _ 사용
 amounts = [0] * len(drinks) #오히려 현재 코드에서는 이쪽이 더 빠를 수 있음.
 
 
@@ -10,13 +10,13 @@ total_price = 0
 
 menu_texts = ""
 def order_process(idx):
-    global total_price
+    global total_price #전역 변수
     """
     주문 처리 함수 1) 주문 디스플레이 2)총 주문 금액 누산 3)수량 업데이트
     :return: 없음
     """
     print(f"{drinks[idx]}를 선택하셨습니다. 가격은 {prices[idx]}원 입니다.")
-    total_price += prices[idx]
+    total_price += prices[idx] 
     amounts[idx] += 1
 
 #for j in range(len(drinks)):
