@@ -30,6 +30,20 @@ def display_menu():
     menu_texts = menu_texts + f"{len(drinks)+1} 주문 종료 : "
     return menu_texts
 
+def print_receipt():
+    """
+    영수증 출력 기능
+    :return: 없음
+    """
+    print(f"{'총 거래':^20} 내용 영수증")
+    print("-------------------------------")
+    for i in range(len(drinks)):
+        if amounts[i] > 0:
+            print(
+                f"{drinks[i]:^{max(map(len, drinks)) - len(drinks[i]) + 10}} {prices[i]:^{max(map(len, drinks)) + len(drinks[i])}}원 {amounts[i]}개 :{prices[i] * amounts[i]}원")
+    print("-------------------------------")
+    print(f"{total_price}원 입니다")
+
 #for j in range(len(drinks)):
 #    menu_texts = menu_texts + f"{j+1}) {drinks[j]} {prices[j]}원 "
 #menu_texts = menu_texts + f"{len(drinks)+1})주문 종료 :"
@@ -46,11 +60,4 @@ while(True):
     else:
         print(f"{menu}메뉴는 존재하지 않습니다. 다시 시도해주세요.")
 
-
-print(f"{'총 거래':^20} 내용 영수증")
-print("-------------------------------")
-for i in range(len(drinks)):
-    if amounts[i] > 0:
-        print(f"{drinks[i]:^{max(map(len,drinks))-len(drinks[i])+10}} {prices[i]:^{max(map(len,drinks))+len(drinks[i])}}원 {amounts[i]}개 :{prices[i] * amounts[i]}원")
-print("-------------------------------")
-print(f"{total_price}원 입니다")
+print_receipt()
