@@ -41,3 +41,10 @@ def print_receipt() -> None:
                 f"{drinks[i]:^{max(map(len, drinks)) - len(drinks[i]) + 10}} {prices[i]:^{max(map(len, drinks)) + len(drinks[i])}}원 {amounts[i]}개 :{prices[i] * amounts[i]}원")
     print("-------------------------------")
     print(f"{total_price}원 입니다")
+
+def test() -> None :
+    """
+    앞으로 키오스크에 추가 할 기능
+    :return: 
+    """
+    pass

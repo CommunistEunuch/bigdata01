@@ -1,7 +1,7 @@
 # 아아 : 2000 # 라떼 2500
 import sys
 #import kiosk as kk
-from kiosk import *
+from kiosk import print_receipt, display_menu, order_process, drinks
 
 while(True):
     try:
@@ -16,3 +16,4 @@ while(True):
     except ValueError:
         print("문자를 입력할 수 없습니다. 다시 시도해주세요")
 print_receipt()
+#test() #쓰지 않는 함수 방지
