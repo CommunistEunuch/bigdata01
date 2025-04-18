@@ -17,3 +17,4 @@ while(True):
         print("문자를 입력할 수 없습니다. 다시 시도해주세요")
 print_receipt()
 #test() #쓰지 않는 함수 방지
+#print(total_price) #허용되지 않는 임포트 방지

@@ -58,5 +58,4 @@ while(True):
             print(f"{menu}메뉴는 존재하지 않습니다. 다시 시도해주세요.")
     except ValueError:
         print("문자를 입력할 수 없습니다. 다시 시도해주세요")
-
 print_receipt()
