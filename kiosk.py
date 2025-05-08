@@ -44,7 +44,17 @@ def print_receipt() -> None:
             print(
                 f"{drinks[i]:^{max(map(len, drinks)) - len(drinks[i]) + 10}} {prices[i]:^{max(map(len, drinks)) + len(drinks[i])}}원 {amounts[i]}개 :{prices[i] * amounts[i]}원")
     print("-------------------------------")
-    print(f"{total_price}원 입니다")
+
+    discounted_price = discount_rate(total_price)
+    discount = total_price - discounted_price
+
+    print(f"할인 전 금액{total_price}원")
+    if discount > 0:
+        print(f"할인 금액{discount}원")
+        print(f"할인 적용 후 지불하실 총 금액{discounted_price}원")
+    else:
+        print(f"할인이 적용되지 않았습니다. \n 지불하실 총 금액은 {discounted_price}입니다.")
+
 
 def test() -> None :
     """
@@ -63,4 +73,4 @@ def discount_rate(price: int) -> float :
     if(price > DISCOUNT_THRESHOLD):
         return price * (1-DISCOUNT_RATE)
     else:
-        pass
+        return price
