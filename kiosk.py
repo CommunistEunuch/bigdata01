@@ -5,6 +5,10 @@ amounts = [0] * len(drinks) #오히려 현재 코드에서는 이쪽이 더 빠�
 
 total_price = 0
 
+#할인 적용 정책 : 원
+DISCOUNT_THRESHOLD = 10000 #할인이 적용되는 임계값
+DISCOUNT_RATE = 0.1 #할인율
+
 menu_texts = ""
 
 def order_process(idx:int) -> None: #타입 힌트
@@ -49,8 +53,14 @@ def test() -> None :
     """
     pass
 
-def discount_rate(price: int ) -> float :
+def discount_rate(price: int) -> float :
     """
     총 금액이 임계 금액을 넘어서면 할인율 적용하는 함수
     :return 할인 적용한 금액
     """
+    global DISCOUNT_THRESHOLD, DISCOUNT_RATE
+
+    if(price > DISCOUNT_THRESHOLD):
+        return price * (1-DISCOUNT_RATE)
+    else:
+        pass
