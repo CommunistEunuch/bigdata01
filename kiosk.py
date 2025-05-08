@@ -11,6 +11,7 @@ DISCOUNT_RATE = 0.1 #할인율
 
 menu_texts = ""
 
+
 def order_process(idx:int) -> None: #타입 힌트
     global total_price #전역 변수
     """
@@ -54,7 +55,7 @@ def print_receipt() -> None:
         print(f"할인 적용 후 지불하실 총 금액{discounted_price}원")
     else:
         print(f"할인이 적용되지 않았습니다. \n 지불하실 총 금액은 {discounted_price}입니다.")
-
+    print(f"주문 번호는 {get_ticket_number()} 입니다")
 
 def test() -> None :
     """
@@ -74,3 +75,22 @@ def discount_rate(price: int) -> float :
         return price * (1-DISCOUNT_RATE)
     else:
         return price
+
+
+def get_ticket_number() -> int :
+    """
+    주문 번호표 처리 기능 함수
+    :return: 주문 번호
+    """
+    try:
+        with open("ticket.txt","r") as file:
+            number = int(file.read())
+    except FileNotFoundError:
+        number = 0
+
+    number += 1
+
+    with open("ticket.txt", "w") as file:
+        file.write(str(number))
+
+    return number

@@ -1,7 +1,7 @@
 # 아아 : 2000 # 라떼 2500
 import sys
 #import kiosk as kk
-from kiosk import print_receipt, display_menu, order_process, drinks, discount_rate, total_price
+from kiosk import print_receipt, display_menu, order_process, drinks, discount_rate, total_price, get_ticket_number
 
 if __name__ == '__main__':
     while(True):
