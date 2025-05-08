@@ -18,3 +18,4 @@ while(True):
 print_receipt()
 #test() #쓰지 않는 함수 방지
 #print(total_price) #허용되지 않는 임포트 방지
+

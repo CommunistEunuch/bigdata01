@@ -48,3 +48,9 @@ def test() -> None :
     :return: 
     """
     pass
+
+def discount_rate(price: int ) -> float :
+    """
+    총 금액이 임계 금액을 넘어서면 할인율 적용하는 함수
+    :return 할인 적용한 금액
+    """
