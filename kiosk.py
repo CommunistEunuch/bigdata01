@@ -97,7 +97,7 @@ def discount_rate(price: int) -> float :
         return price
 
 
-def get_ticket_number() -> None:
+def print_ticket_number() -> None:
     """
     주문 번호표 출력 함수
     :return: None
