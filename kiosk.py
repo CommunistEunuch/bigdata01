@@ -1,3 +1,5 @@
+import datetime
+
 drinks = ["아이스 아메리카노", "카페 라떼", "수박 주스", "딸기 주스"]
 prices = [2000, 2500, 3000, 3200]
 amounts = [0] * len(drinks) #오히려 현재 코드에서는 이쪽이 더 빠를 수 있음.
@@ -73,7 +75,7 @@ def print_receipt() -> None:
         print(f"할인 적용 후 지불하실 총 금액{discounted_price}원")
     else:
         print(f"할인이 적용되지 않았습니다. \n 지불하실 총 금액은 {discounted_price}입니다.")
-    print(f"주문 번호는 {get_ticket_number()} 입니다")
+    print(f"현재 시각 : {datetime.datetime.now().strftime('%Y년 %m월 %d일 %H시 %M분 %S초')}")
 
 def test() -> None :
     """
