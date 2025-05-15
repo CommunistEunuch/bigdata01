@@ -7,9 +7,27 @@ total_price = 0
 
 #할인 적용 정책 : 원
 DISCOUNT_THRESHOLD = 10000 #할인이 적용되는 임계값
-DISCOUNT_RATE = 0.1 #할인율
+DISCOUNT_RATE = 0.05 #할인율
 
 menu_texts = ""
+
+def run() -> None:
+    """
+    키오스크 실행(구동) 함수
+    :return: None
+    """
+    while True:
+        try:
+            menu = int(input(display_menu()))
+            if len(drinks) >= menu >= 1:
+                order_process(menu - 1)
+            elif menu == len(drinks)+1:
+                print("주문을 종료합니다")
+                break
+            else:
+                print(f"{menu}번 메뉴는 존재하지 않습니다. 아래 메뉴에서 골라주세요")
+        except ValueError:
+            print(f"문자를 입력할 수 없습니다. 숫자를 입력해주세요")
 
 
 def order_process(idx:int) -> None: #타입 힌트
@@ -51,7 +69,7 @@ def print_receipt() -> None:
 
     print(f"할인 전 금액{total_price}원")
     if discount > 0:
-        print(f"할인 금액{discount}원")
+        print(f"할인 금액{discount}원 ({DISCOUNT_RATE*100}% 할인)")
         print(f"할인 적용 후 지불하실 총 금액{discounted_price}원")
     else:
         print(f"할인이 적용되지 않았습니다. \n 지불하실 총 금액은 {discounted_price}입니다.")
