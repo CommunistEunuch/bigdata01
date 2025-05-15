@@ -77,10 +77,10 @@ def discount_rate(price: int) -> float :
         return price
 
 
-def get_ticket_number() -> int :
+def get_ticket_number() -> None:
     """
-    주문 번호표 처리 기능 함수
-    :return: 주문 번호
+    주문 번호표 출력 함수
+    :return: None
     """
     try:
         with open("ticket.txt","r") as file:
@@ -93,4 +93,6 @@ def get_ticket_number() -> int :
     with open("ticket.txt", "w") as file:
         file.write(str(number))
 
-    return number
+    print(f"번호표 : {number}")
+    #return number
+
