@@ -1,4 +1,5 @@
 import datetime
+import sqlite3
 
 drinks = ["아이스 아메리카노", "카페 라떼", "수박 주스", "딸기 주스"]
 prices = [2000, 2500, 3000, 3200]
@@ -75,7 +76,7 @@ def print_receipt() -> None:
         print(f"할인 적용 후 지불하실 총 금액{discounted_price}원")
     else:
         print(f"할인이 적용되지 않았습니다. \n 지불하실 총 금액은 {discounted_price}입니다.")
-    print(f"현재 시각 : {datetime.datetime.now().strftime('%Y년 %m월 %d일 %H시 %M분 %S초')}")
+    print(f"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 
 def test() -> None :
     """
@@ -96,23 +97,31 @@ def discount_rate(price: int) -> float :
     else:
         return price
 
-
 def print_ticket_number() -> None:
     """
     주문 번호표 출력 함수
     :return: None
     """
-    try:
-        with open("ticket.txt","r") as file:
-            number = int(file.read())
-    except FileNotFoundError:
-        number = 0
+    conn = sqlite3.connect('cafe.db')  # db instance open
+    cur = conn.cursor()
+    cur.execute('''
+            create table if not exists ticket (
+            id integer primary key autoincrement,
+            number integer not null
+            )
+        ''')
 
-    number += 1
+    cur.execute('select number from ticket order by number desc limit 1')
+    result = cur.fetchone()
 
-    with open("ticket.txt", "w") as file:
-        file.write(str(number))
+    if result is None:
+        number = 1
+        cur.execute('insert into ticket (number) values (?)', (number,))
+    else:
+        number = result[0] + 1
+        cur.execute('update ticket set number=(?)', (number,))
+
+    conn.commit()
 
     print(f"번호표 : {number}")
-    #return number
 

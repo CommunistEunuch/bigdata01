@@ -1,3 +1,6 @@
 *.idea
 temp.py
 ticket.txt
+*.exe
+temp.db
+*.db
