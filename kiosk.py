@@ -1,4 +1,4 @@
-import datetime
+import datetime as datetime
 import sqlite3
 
 drinks = ["아이스 아메리카노", "카페 라떼", "수박 주스", "딸기 주스"]
@@ -105,21 +105,23 @@ def print_ticket_number() -> None:
     conn = sqlite3.connect('cafe.db')  # db instance open
     cur = conn.cursor()
     cur.execute('''
-            create table if not exists ticket (
-            id integer primary key autoincrement,
-            number integer not null
-            )
-        ''')
+        create table if not exists ticket (
+        id integer primary key autoincrement,
+        number integer not null,
+        created_at text not null default (datetime('now','localtime'))
+        )
+    ''')
 
     cur.execute('select number from ticket order by number desc limit 1')
     result = cur.fetchone()
 
+    now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     if result is None:
         number = 1
-        cur.execute('insert into ticket (number) values (?)', (number,))
+        cur.execute('insert into ticket (number, created_at) values (?,?)', (number,now))
     else:
         number = result[0] + 1
-        cur.execute('update ticket set number=? where id = (select id from ticket order by number desc limit 1)', (number,))
+        cur.execute('insert into ticket (number, created_at) values (?,?)', (number,now))
 
     conn.commit()
 
