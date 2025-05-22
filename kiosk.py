@@ -125,5 +125,5 @@ def print_ticket_number() -> None:
 
     conn.commit()
 
-    print(f"번호표 : {number}")
+    print(f"번호표 : {number} {now}")
 
